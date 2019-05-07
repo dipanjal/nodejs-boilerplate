@@ -1,7 +1,9 @@
 var router = require('express').Router();
 
-var testGetApi = require('./uscity-api-controller')
+let usCityApiController = require('./uscity-api-controller'),
+    chatApiController = require('./chat-controller');
 
-router.use('/us-city',testGetApi)
+router.use('/us-city',usCityApiController)
+router.use('/chat-room',chatApiController)
 
 module.exports = router

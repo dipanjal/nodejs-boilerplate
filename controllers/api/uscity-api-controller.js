@@ -8,17 +8,23 @@ class Test {
 }
 
 var router = require('express').Router();
-var UScity = require('../../db/us-city-dao')
 
-router.get('/getall', (req,res) => {  
-    console.log('getall---')
-    UScity.getAll( (err,result) => {
+/* data access objects */
+var USCityDao = require('../../db/dao/us-city-dao')
+
+/* API RESPONSE OBJECT */
+var ApiResponse = require('../../utils/api-response');
+
+/* get request api url */
+router.get('/get_all_cities', (req,res) => {
+    console.log('getallcity---')
+    USCityDao.getAllCities( (err,result) => {
         if (err){
             res.send(err)
         }
-        res.json(result)
+        let apiResponse = new ApiResponse(200,'ok', result);
+        res.json(apiResponse)
     });
-
 });
 
 module.exports = router
@@ -36,7 +42,7 @@ module.exports = router
 //     // }
 
 //     // let test = new Test(data)
-//     UScity.getAll( (err,result) => {
+//     usCityDao.getAll( (err,result) => {
 //         if (err){
 //             res.send(err)
 //         }

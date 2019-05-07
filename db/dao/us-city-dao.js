@@ -1,10 +1,10 @@
-var getConnection = require('./db');
+var getMysqlConnection = require('../connectors/mysql-connector');
 
-var USCity = function(){};
+var USCityDao = function(){}
 
-USCity.getAll = (callback) => {
+USCityDao.getAllCities = (callback) => {
     //getting mysql connection
-    getConnection(function(err, connection){
+    getMysqlConnection(function(err, connection){
         if (err){
             //if error in connection
             console.log(err)
@@ -26,4 +26,4 @@ USCity.getAll = (callback) => {
     });
 };
 
-module.exports = USCity;
+module.exports = USCityDao;
